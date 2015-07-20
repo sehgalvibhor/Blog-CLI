@@ -135,13 +135,14 @@ class MyApp(CementApp):
 
 
 def main():
-    with MyApp() as app:
-        try:
-            app.run()
-        except FrameworkError as e:
-            print("Framework Error => %s " % e)
-        finally:
-            app.close()
+    app=MyApp()
+    app.setup()
+    try:
+        app.run()
+    except FrameworkError as e:
+        print("Framework Error => %s " % e)
+    finally:
+        app.close()
 
 if __name__ == '__main__':
     main()
