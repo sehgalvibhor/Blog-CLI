@@ -1,16 +1,28 @@
+import sqlite3
+import os
+
+def insimport(package):
+    import importlib
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        print("Installing module")
+        import pip
+        pip.main(['install', package])
+    finally:
+        globals()[package] = importlib.import_module(package)
+        
+insimport('cement')
+
 from cement.core.foundation import CementApp
 from cement.core.controller import CementBaseController, expose
 from cement.core import handler, hook
 from cement.core.exc import FrameworkError
-import sqlite3
-import os
+
 
 sqlite_file = 'blog_db.sqlite'
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-
 
 class Error(Exception):
     pass
