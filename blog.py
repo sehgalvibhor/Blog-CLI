@@ -1,9 +1,10 @@
 import sqlite3
 import os
 import sys
+import importlib
+import site
 
 def insimport(package):
-    import importlib
     try:
         importlib.import_module(package)
     except ImportError:
@@ -13,17 +14,16 @@ def insimport(package):
             pip.main(['install', package])
         else:
             pip.main(['install','--user', package])
+            importlib.reload(site)
+
         
 insimport('cement')
 
-try:
-    from cement.core.foundation import CementApp
-    from cement.core.controller import CementBaseController, expose
-    from cement.core import handler, hook
-    from cement.core.exc import FrameworkError
-except Exception as e:
-    print("Re-run the application")
-    sys.exit(0)
+from cement.core.foundation import CementApp
+from cement.core.controller import CementBaseController, expose
+from cement.core import handler, hook
+from cement.core.exc import FrameworkError
+
 
 sqlite_file = 'blog_db.sqlite'
 conn = sqlite3.connect(sqlite_file)
