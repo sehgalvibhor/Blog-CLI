@@ -8,6 +8,10 @@ This application uses pip, Cement 2.6.x framework,Sqlite3 and Python 3.4.x .
 
 ####INSTALLATION
 Please follow the steps for installation.
+- To install pip 
+  ```
+sudo apt-get install python3-pip
+```
 - To install Cement ( You can avoid this step, the application installs Cement framework)
   ```
 sudo pip install cement
