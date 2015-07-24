@@ -30,6 +30,7 @@ python blog.py --help
 ####USAGE
 Steps to use the application efficiently.
 - The application is divided broadly into two controllers 'post' and 'category' , with each controller having seperate commands and arguments to be passed.
+- Now default argument ' --help ' is directly passed for the convenience of the user.
 - To view the commands for Post , type the following command (Similarly can be done for Category)
 ```
 python blog.py Post --help
